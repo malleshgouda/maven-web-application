@@ -37,12 +37,12 @@ catch(e){
 currentBuild.result = "FAILURE"
 } //catch block closing
 finally{
-sendslacknotification(cuurentbuild.result)
+sendslacknotifications(currentBuild.result)
 }//finally closing
 
 }//Node closing
 
-def sendslacknotification(String buildStatus = 'STARTED') {
+def sendslacknotifications(String buildStatus = 'STARTED') {
   // build status of null means successful
   buildStatus =  buildStatus ?: 'SUCCESSFUL'
 
@@ -54,13 +54,13 @@ def sendslacknotification(String buildStatus = 'STARTED') {
 
   // Override default values based on build status
   if (buildStatus == 'STARTED') {
-    color = 'YELLOW'
+    colorName = 'YELLOW'
     colorCode = '#FFFF00'
   } else if (buildStatus == 'SUCCESSFUL') {
-    color = 'GREEN'
+    colorName = 'GREEN'
     colorCode = '#00FF00'
   } else {
-    color = 'RED'
+    colorName = 'RED'
     colorCode = '#FF0000'
   }
 
